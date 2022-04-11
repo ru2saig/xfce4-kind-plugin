@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <requires lib="libxfce4ui-2" version="4.11"/>
+  <object class="XfceTitledDialog" id="dialog">
+    <property name="can-focus">False</property>
+    <property name="title" translatable="yes">Kind Panel Plugin</property>
+    <property name="default-width">350</property>
+    <property name="default-height">200</property>
+    <property name="hide-titlebar-when-maximized">True</property>
+    <property name="icon-name">gtk-properties</property>
+    <property name="type-hint">normal</property>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="dialog-vbox2">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="dialog-action_area2">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
+            <child>
+              <object class="GtkButton" id="close-button">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="help-button">
+                <property name="label">gtk-help</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+                <property name="secondary">True</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFrame" id="frame1">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label-xalign">0.039999999105930328</property>
+            <property name="shadow-type">none</property>
+            <child>
+              <object class="GtkAlignment">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="top-padding">7</property>
+                <property name="left-padding">13</property>
+                <child>
+                  <object class="GtkBox" id="vbox1">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">7</property>
+                    <child>
+                      <object class="GtkBox" id="caps_lock_box">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="spacing">7</property>
+                        <child>
+                          <object class="GtkSwitch" id="caps_lock_show">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="active">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="caps_lock_switch_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Show Caps Lock Indicator</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="num_lock_box">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="spacing">7</property>
+                        <child>
+                          <object class="GtkSwitch" id="num_lock_show">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="active">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="num_lock_switch_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Show Num Lock Indicator</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="scroll_lock_box">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="spacing">7</property>
+                        <child>
+                          <object class="GtkSwitch" id="scroll_lock_show">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="active">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="scroll_lock_switch_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Show Scroll Lock Indicator</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="label">
+              <object class="GtkLabel" id="toggle_indicators">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">Toggle Indicator</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="0">close-button</action-widget>
+      <action-widget response="0">help-button</action-widget>
+    </action-widgets>
+  </object>
+  <object class="GtkListStore" id="liststore1">
+    <columns>
+      <!-- column-name pixbuf -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name player -->
+      <column type="gchararray"/>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name hidden -->
+      <column type="gboolean"/>
+    </columns>
+  </object>
+</interface>

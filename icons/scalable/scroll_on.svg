@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="128"
+   height="128"
+   viewBox="0 0 33.866666 33.866666"
+   version="1.1"
+   id="svg12"
+   shape-rendering="crispEdges"
+   sodipodi:docname="scroll_on.svg"
+   inkscape:version="1.1.1 (3bf5ae0, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview5475"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="4.1328125"
+     inkscape:cx="64"
+     inkscape:cy="64"
+     inkscape:window-width="1358"
+     inkscape:window-height="738"
+     inkscape:window-x="4"
+     inkscape:window-y="26"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs9" />
+  <g
+     id="layer1">
+    <path
+       id="rect20559"
+       style="fill:#ffffff;stroke-width:0.999999"
+       d="m 0,13 v 102 a 13,13 45 0 0 13,13 h 102 a 13,13 135 0 0 13,-13 V 13 A 13,13 45 0 0 115,0 H 13 A 13,13 135 0 0 0,13 Z m 33,7 h 62 a 13,13 45 0 1 13,13 V 95 A 13,13 135 0 1 95,108 H 33 A 13,13 45 0 1 20,95 V 33 A 13,13 135 0 1 33,20 Z"
+       transform="scale(0.26458333)" />
+    <path
+       style="fill:#000000;fill-opacity:0"
+       id="path356"
+       d="M -44.476073,-14.276646 26.069008,-79.93158 121.38424,-65.712397 169.69531,17.673569 134.623,107.43498 42.577469,135.97967 -37.129117,81.812901 Z"
+       transform="scale(0.26458333)" />
+    <path
+       style="fill:#000000;fill-opacity:0"
+       id="path358"
+       d="M 90.376713,90.159263 27.709234,111.43611 -27.998207,75.706597 -34.796772,9.8757799 12.432997,-36.484396 l 65.693125,8.020624 34.688218,56.361731 z"
+       transform="scale(0.26458333)" />
+    <path
+       id="path544"
+       style="fill:#ffffff"
+       transform="matrix(0.14397935,0,0,0.15077869,12.614128,10.121346)"
+       d="M 59.401145,90.802974 H 0.59641713 V 32.895257 l -22.05177313,-10e-7 51.454137,-52.64338 51.454137,52.643381 -22.051773,0 z" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.269695"
+       id="rect4636"
+       width="8.4666662"
+       height="2.6458333"
+       x="12.7"
+       y="24.606249" />
+  </g>
+</svg>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="128"
+   height="128"
+   viewBox="0 0 33.866666 33.866666"
+   version="1.1"
+   id="svg12"
+   shape-rendering="crispEdges"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs9" />
+  <g
+     id="layer1">
+    <path
+       id="rect20559"
+       style="fill:#ffffff;stroke-width:0.999999"
+       d="m 0,13 v 102 a 13,13 45 0 0 13,13 h 102 a 13,13 135 0 0 13,-13 V 13 A 13,13 45 0 0 115,0 H 13 A 13,13 135 0 0 0,13 Z m 33,7 h 62 a 13,13 45 0 1 13,13 V 95 A 13,13 135 0 1 95,108 H 33 A 13,13 45 0 1 20,95 V 33 A 13,13 135 0 1 33,20 Z"
+       transform="scale(0.26458333)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.7533px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.266642"
+       x="8.6006794"
+       y="23.959387"
+       id="text34601"
+       transform="scale(0.99511133,1.0049127)"><tspan
+         id="tspan41334"
+         x="8.6006794"
+         y="23.959387"
+         style="stroke-width:0.266642">1</tspan></text>
+  </g>
+</svg>

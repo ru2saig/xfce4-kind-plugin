@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="128"
+   height="128"
+   viewBox="0 0 33.866666 33.866666"
+   version="1.1"
+   id="svg12"
+   shape-rendering="crispEdges"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs9" />
+  <g
+     id="layer1">
+    <path
+       id="rect20559"
+       style="fill:#4d4d4d;stroke-width:0.999999"
+       d="m 0,13 v 102 a 13,13 45 0 0 13,13 h 102 a 13,13 135 0 0 13,-13 V 13 A 13,13 45 0 0 115,0 H 13 A 13,13 135 0 0 0,13 Z m 33,7 h 62 a 13,13 45 0 1 13,13 V 95 A 13,13 135 0 1 95,108 H 33 A 13,13 45 0 1 20,95 V 33 A 13,13 135 0 1 33,20 Z"
+       transform="scale(0.26458333)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.7533px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#4d4d4d;fill-opacity:1;stroke:none;stroke-width:0.266642"
+       x="8.6006842"
+       y="23.959393"
+       id="text34601"
+       transform="scale(0.99511082,1.0049132)"><tspan
+         id="tspan43391"
+         x="8.6006842"
+         y="23.959393"
+         style="stroke-width:0.266642"><tspan
+           id="tspan34599"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.7533px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#4d4d4d;stroke-width:0.266642"
+           x="8.6006842"
+           y="23.959393">1</tspan></tspan><tspan
+         id="tspan43393"
+         x="8.6006842"
+         y="52.401031"
+         style="stroke-width:0.266642" /></text>
+  </g>
+</svg>
