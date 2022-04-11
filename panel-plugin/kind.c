@@ -65,20 +65,19 @@ kind_update(gpointer data)
   gboolean num_on = FALSE;
   gboolean scroll_on = FALSE;
 
-  DBG("%d", kind->show_caps_icon);
-  
-  if(gdk_keymap_get_caps_lock_state(kind->kmap))
+
+  if(kind->show_caps_icon && gdk_keymap_get_caps_lock_state(kind->kmap))
       caps_on = TRUE;
 
-  if(gdk_keymap_get_num_lock_state(kind->kmap))
+  if(kind->show_num_icon && gdk_keymap_get_num_lock_state(kind->kmap))
     num_on = TRUE;
 
-  if(gdk_keymap_get_scroll_lock_state(kind->kmap))
+  if(kind->show_scroll_icon && gdk_keymap_get_scroll_lock_state(kind->kmap))
     scroll_on = TRUE;
 
   
   
-  if(kind->caps_on != caps_on)
+  if(kind->show_caps_icon && kind->caps_on != caps_on)
     {
       gtk_image_set_from_icon_name (GTK_IMAGE (kind->caps_icon), caps_icon[caps_on], GTK_ICON_SIZE_BUTTON);
       gtk_image_set_pixel_size (GTK_IMAGE (kind->caps_icon), kind->icon_size);
@@ -86,7 +85,7 @@ kind_update(gpointer data)
       kind->caps_on = caps_on;
     }
 
-  if(kind->num_on != num_on)
+  if(kind->show_num_icon && kind->num_on != num_on)
     {
       gtk_image_set_from_icon_name (GTK_IMAGE (kind->num_icon), num_icon[num_on], GTK_ICON_SIZE_BUTTON);
       gtk_image_set_pixel_size (GTK_IMAGE (kind->num_icon), kind->icon_size);
@@ -94,7 +93,7 @@ kind_update(gpointer data)
       kind->num_on = num_on;
     }
 
-  if(kind->scroll_on != scroll_on)
+  if(kind->show_scroll_icon && kind->scroll_on != scroll_on)
     {
       gtk_image_set_from_icon_name (GTK_IMAGE (kind->scroll_icon), scroll_icon[scroll_on], GTK_ICON_SIZE_BUTTON);
       gtk_image_set_pixel_size (GTK_IMAGE (kind->scroll_icon), kind->icon_size);
@@ -199,9 +198,12 @@ kind_free (XfcePanelPlugin *plugin,
     g_source_remove (kind->timeout_id);
 
   /* destroy the panel widgets */
-  gtk_widget_destroy(kind->caps_icon);
-  gtk_widget_destroy(kind->num_icon);
-  gtk_widget_destroy(kind->scroll_icon);
+  if(kind->caps_icon != NULL)
+    gtk_widget_destroy(kind->caps_icon);
+  if(kind->num_icon != NULL)
+    gtk_widget_destroy(kind->num_icon);
+  if(kind->scroll_icon != NULL)
+    gtk_widget_destroy(kind->scroll_icon);
   gtk_widget_destroy (kind->hvbox);
 
   /* free the plugin structure */
