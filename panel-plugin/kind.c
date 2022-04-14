@@ -164,10 +164,9 @@ kind_read (KindPlugin *kind)
       if (G_LIKELY (rc != NULL))
         {
           /* read the settings */
-	  // TODO: is how to do this?
-          kind->config->enable_caps_icon = xfce_rc_read_bool_entry (rc, "show_caps_icon", TRUE);
-	  kind->config->enable_num_icon = xfce_rc_read_bool_entry (rc, "show_num_icon", TRUE);
-	  kind->config->enable_scroll_icon = xfce_rc_read_bool_entry (rc, "show_scroll_icon", TRUE);
+          kind_config_set_enable_caps_icon(kind->config, xfce_rc_read_bool_entry (rc, "show_caps_icon", TRUE));
+	  kind_config_set_enable_num_icon(kind->config, xfce_rc_read_bool_entry (rc, "show_num_icon", TRUE));
+	  kind_config_set_enable_scroll_icon(kind->config, xfce_rc_read_bool_entry (rc, "show_scroll_icon", TRUE));
 	  
           /* cleanup */
           xfce_rc_close (rc);
@@ -180,9 +179,9 @@ kind_read (KindPlugin *kind)
   /* something went wrong, apply default values */
   DBG ("Applying default settings");
 
-  kind->config->enable_caps_icon = TRUE;
-  kind->config->enable_num_icon = TRUE;
-  kind->config->enable_scroll_icon = TRUE;
+  kind_config_set_enable_caps_icon(kind->config, TRUE);
+  kind_config_set_enable_num_icon(kind->config, TRUE);
+  kind_config_set_enable_scroll_icon(kind->config, TRUE);
 }
 
 

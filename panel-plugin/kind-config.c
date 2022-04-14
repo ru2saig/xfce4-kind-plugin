@@ -28,6 +28,23 @@ static void kind_config_set_property   (GObject          *object,
 					const GValue     *value,
 					GParamSpec       *pspec);
 
+struct _KindConfigClass
+{
+  GObjectClass __parent__;
+};
+
+struct _KindConfig
+{
+  GObject __parent__;
+
+  /* Settings  */
+  gboolean        enable_caps_icon;
+  gboolean        enable_num_icon;
+  gboolean        enable_scroll_icon;
+
+  // TODO: allow changing the indicator's position
+};
+
 
 
 enum
@@ -200,4 +217,22 @@ kind_config_get_enable_scroll_icon(KindConfig* config)
 {
   g_return_val_if_fail(IS_KIND_CONFIG(config), DEFAULT_ENABLE_ICON);
   return config->enable_scroll_icon;
+}
+
+void
+kind_config_set_enable_caps_icon(KindConfig* config, gboolean value)
+{
+  config->enable_caps_icon = value;
+}
+
+void
+kind_config_set_enable_num_icon(KindConfig* config, gboolean value)
+{
+  config->enable_num_icon = value;
+}
+
+void
+kind_config_set_enable_scroll_icon(KindConfig* config, gboolean value)
+{
+  config->enable_scroll_icon = value;
 }
