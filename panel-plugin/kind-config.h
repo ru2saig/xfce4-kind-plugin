@@ -39,9 +39,9 @@ typedef struct _KindConfigClass KindConfigClass;
 GType kind_config_get_type(void) G_GNUC_CONST;
 KindConfig *kind_config_new(const gchar *property_base);
 
-gboolean kind_config_get_enable_caps_icon(KindConfig *config); // TODO
-gboolean kind_config_get_enable_num_icon(KindConfig *config); // TODO
-gboolean kind_config_get_enable_scroll_icon(KindConfig *config); // TODO
+gboolean kind_config_get_enable_caps_icon(KindConfig *config);
+gboolean kind_config_get_enable_num_icon(KindConfig *config);
+gboolean kind_config_get_enable_scroll_icon(KindConfig *config);
 
 struct _KindConfigClass
 {

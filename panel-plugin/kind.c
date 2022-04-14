@@ -66,12 +66,13 @@ kind_update(gpointer data)
   gboolean caps_on = FALSE;
   gboolean num_on = FALSE;
   gboolean scroll_on = FALSE;
-  // TODO: check config for wheter or not the key is enabled
 
-  if(gdk_keymap_get_caps_lock_state(kind->kmap))
+  // TODO: Check if the keys are enabled, to prevent uneccesarry computing
+  
+  if(kind_config_get_enable_caps_icon(kind->config) && gdk_keymap_get_caps_lock_state(kind->kmap))
       caps_on = TRUE;
 
-  if(gdk_keymap_get_num_lock_state(kind->kmap))
+  if(kind_config_get_enable_num_icon(kind->config) && gdk_keymap_get_num_lock_state(kind->kmap))
     num_on = TRUE;
 
   if(gdk_keymap_get_scroll_lock_state(kind->kmap))
@@ -185,7 +186,7 @@ kind_read (KindPlugin *kind)
 }
 
 
-// TODO free timeout_id here
+
 static void
 kind_free (XfcePanelPlugin *plugin,
              KindPlugin    *kind)

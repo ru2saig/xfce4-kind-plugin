@@ -49,21 +49,32 @@ kind_show_help(KindPlugin *kind,
 }
 
 
-
-// TODO: Look into g_object_bind_property instead? Since the state of the switch, is essentialy whether to show or not show the icon
-// TODO: send the required data: the plugin and the switch.
-// but why aren't they being sent?
-// Why is the kind plugin borked?
 static void
-kind_caps_lock(KindPlugin *kind,
-	       GtkWidget* sw)
+kind_configuration_changed(KindConfig* config)
 {
-  
-  //  gtk_switch_set_state(sw, kind->show_caps_icon);
-  DBG("ehllo there!%d", kind->caps_on);//gtk_switch_get_state(sw));
+  DBG("Configuaration Changed");
 }
 
-// TODO: why is the properties dialog greyed out?
+
+/* TODO: Why is this happening? How to stop it from happening?
+   In file included from /usr/include/glib-2.0/gobject/gobject.h:24,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:29,
+                 from /usr/include/glib-2.0/glib-object.h:22,
+                 from /usr/include/glib-2.0/gio/gioenums.h:28,
+                 from /usr/include/glib-2.0/gio/giotypes.h:
+		 from /usr/include/glib-2.0/gio/gio.h:26,
+                 from /usr/include/gtk-3.0/gdk/gdkapplaunchcontext.h:28,
+                 from /usr/include/gtk-3.0/gdk/gdk.h:32,
+                 from /usr/include/gtk-3.0/gtk/gtk.h:30,
+                 from kind-dialogs.c:25:
+kind-dialogs.c: In function 'kind_configure':
+/usr/include/glib-2.0/gobject/gtype.h:2458:21: warning: 'dialog' may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 2458 |     ((ct*) (void *) g_type_check_instance_cast ((GTypeInstance*) ip, gt))
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+kind-dialogs.c:72:12: note: 'dialog' was declared here
+   72 |   GObject *dialog, *button, *gtk_switch;
+ */
+
 void
 kind_configure (XfcePanelPlugin *plugin,
                   KindPlugin    *kind)
@@ -76,7 +87,6 @@ kind_configure (XfcePanelPlugin *plugin,
   if (xfce_titled_dialog_get_type () == 0)
     return;
 
-  
   builder = gtk_builder_new ();
   if (gtk_builder_add_from_string (builder, kind_dialog_ui, kind_dialog_ui_length, &error))
     {
@@ -95,16 +105,28 @@ kind_configure (XfcePanelPlugin *plugin,
       g_signal_connect(G_OBJECT(button), "clicked",
 		       G_CALLBACK(kind_show_help), kind);
 
+
+      g_signal_connect(G_OBJECT(kind->config), "configuration-changed",
+		       G_CALLBACK(kind_configuration_changed), kind->config);
+      
+      // TODO: implement a callback that checks for this property, and then loads/unloads the icon accordingly. Check NOTES for more info
       gtk_switch = gtk_builder_get_object(builder, "caps_lock_show");
       g_return_if_fail(GTK_IS_SWITCH(gtk_switch));
       g_object_bind_property(G_OBJECT(kind->config), "enable_caps_icon",
 			     G_OBJECT(gtk_switch), "state",
 			     G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
-      
-      /* if(G_LIKELY(gtk_switch != NULL)) */
-      /* 	g_signal_connect_swapped(G_OBJECT(gtk_switch), "notify::active", */
-      /* 			 G_CALLBACK(kind_caps_lock), kind); */
-	
+
+      gtk_switch = gtk_builder_get_object(builder, "num_lock_show");
+      g_return_if_fail(GTK_IS_SWITCH(gtk_switch));
+      g_object_bind_property(G_OBJECT(kind->config), "enable_num_icon",
+			     G_OBJECT(gtk_switch), "state",
+			     G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+
+      gtk_switch = gtk_builder_get_object(builder, "scroll_lock_show");
+      g_return_if_fail(GTK_IS_SWITCH(gtk_switch));
+      g_object_bind_property(G_OBJECT(kind->config), "enable_scroll_icon",
+			     G_OBJECT(gtk_switch), "state",
+			     G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
       
     }
 
