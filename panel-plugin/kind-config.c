@@ -29,23 +29,6 @@ static void kind_config_set_property   (GObject          *object,
 					GParamSpec       *pspec);
 
 
-struct _KindConfigClass
-{
-  GObjectClass __parent__;
-};
-
-struct _KindConfig
-{
-  GObject __parent__;
-
-  /* Settings  */
-  gboolean        enable_caps_icon;
-  gboolean        enable_num_icon;
-  gboolean        enable_scroll_icon;
-
-  // TODO: allow changing the indicator's position
-};
-
 
 enum
   {

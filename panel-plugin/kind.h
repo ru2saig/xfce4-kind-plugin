@@ -51,11 +51,8 @@ typedef struct
 
   gint            icon_size;
   
-  /* Settings  */
-  gboolean        show_caps_icon;
-  gboolean        show_num_icon;
-  gboolean        show_scroll_icon;
-
+  KindConfig      *config;
+  
 } KindPlugin;
 
 

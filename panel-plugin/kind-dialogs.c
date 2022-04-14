@@ -30,6 +30,7 @@
 #include "kind.h"
 #include "kind-dialogs.h"
 #include "kind_dialog_ui.h"
+#include "kind-config.h"
 
 /* the website url */
 #define PLUGIN_WEBSITE "https://github.com/ru2saig/xfce4-kind-plugin/" // TODO: add the link to the README here
@@ -62,7 +63,7 @@ kind_caps_lock(KindPlugin *kind,
   DBG("ehllo there!%d", kind->caps_on);//gtk_switch_get_state(sw));
 }
 
-
+// TODO: why is the properties dialog greyed out?
 void
 kind_configure (XfcePanelPlugin *plugin,
                   KindPlugin    *kind)
@@ -82,8 +83,8 @@ kind_configure (XfcePanelPlugin *plugin,
       dialog = gtk_builder_get_object (builder, "dialog");
 
       g_return_if_fail(XFCE_IS_TITLED_DIALOG(dialog));
-      xfce_panel_plugin_block_menu (plugin);
-      
+
+      // TODO: call kind-save somewhere. Perhaps here
       button = gtk_builder_get_object(builder, "close-button");
       g_return_if_fail(GTK_IS_BUTTON(button));
       g_signal_connect_swapped (G_OBJECT (button), "clicked",
@@ -96,7 +97,7 @@ kind_configure (XfcePanelPlugin *plugin,
 
       gtk_switch = gtk_builder_get_object(builder, "caps_lock_show");
       g_return_if_fail(GTK_IS_SWITCH(gtk_switch));
-      g_object_bind_property(G_OBJECT(kind), "show_caps_icon",
+      g_object_bind_property(G_OBJECT(kind->config), "enable_caps_icon",
 			     G_OBJECT(gtk_switch), "state",
 			     G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
       
@@ -111,8 +112,7 @@ kind_configure (XfcePanelPlugin *plugin,
   if(G_UNLIKELY(builder == NULL))
     return;
   
-  gtk_widget_show( GTK_WIDGET(dialog));
-  
+  gtk_widget_show(GTK_WIDGET(dialog));
 
 }
 

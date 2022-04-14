@@ -17,6 +17,7 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#include "libxfce4panel/xfce-panel-plugin.h"
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -65,20 +66,20 @@ kind_update(gpointer data)
   gboolean caps_on = FALSE;
   gboolean num_on = FALSE;
   gboolean scroll_on = FALSE;
+  // TODO: check config for wheter or not the key is enabled
 
-
-  if(kind->show_caps_icon && gdk_keymap_get_caps_lock_state(kind->kmap))
+  if(gdk_keymap_get_caps_lock_state(kind->kmap))
       caps_on = TRUE;
 
-  if(kind->show_num_icon && gdk_keymap_get_num_lock_state(kind->kmap))
+  if(gdk_keymap_get_num_lock_state(kind->kmap))
     num_on = TRUE;
 
-  if(kind->show_scroll_icon && gdk_keymap_get_scroll_lock_state(kind->kmap))
+  if(gdk_keymap_get_scroll_lock_state(kind->kmap))
     scroll_on = TRUE;
 
   
   
-  if(kind->show_caps_icon && kind->caps_on != caps_on)
+  if(kind->caps_on != caps_on)
     {
       gtk_image_set_from_icon_name (GTK_IMAGE (kind->caps_icon), caps_icon[caps_on], GTK_ICON_SIZE_BUTTON);
       gtk_image_set_pixel_size (GTK_IMAGE (kind->caps_icon), kind->icon_size);
@@ -86,7 +87,7 @@ kind_update(gpointer data)
       kind->caps_on = caps_on;
     }
 
-  if(kind->show_num_icon && kind->num_on != num_on)
+  if(kind->num_on != num_on)
     {
       gtk_image_set_from_icon_name (GTK_IMAGE (kind->num_icon), num_icon[num_on], GTK_ICON_SIZE_BUTTON);
       gtk_image_set_pixel_size (GTK_IMAGE (kind->num_icon), kind->icon_size);
@@ -94,7 +95,7 @@ kind_update(gpointer data)
       kind->num_on = num_on;
     }
 
-  if(kind->show_scroll_icon && kind->scroll_on != scroll_on)
+  if(kind->scroll_on != scroll_on)
     {
       gtk_image_set_from_icon_name (GTK_IMAGE (kind->scroll_icon), scroll_icon[scroll_on], GTK_ICON_SIZE_BUTTON);
       gtk_image_set_pixel_size (GTK_IMAGE (kind->scroll_icon), kind->icon_size);
@@ -130,9 +131,9 @@ kind_save (XfcePanelPlugin *plugin,
     {
       /* save the settings */
       DBG(".");
-      xfce_rc_write_bool_entry (rc, "show_caps_icon", kind->show_caps_icon);
-      xfce_rc_write_bool_entry (rc, "show_num_icon", kind->show_num_icon);
-      xfce_rc_write_bool_entry (rc, "show_scroll_icon", kind->show_scroll_icon);
+      xfce_rc_write_bool_entry (rc, "enable_caps_icon", kind_config_get_enable_caps_icon(kind->config));
+      xfce_rc_write_bool_entry (rc, "enable_num_icon", kind_config_get_enable_num_icon(kind->config));
+      xfce_rc_write_bool_entry (rc, "enable_scroll_icon", kind_config_get_enable_scroll_icon(kind->config));
 
 
       /* close the rc file */
@@ -162,9 +163,10 @@ kind_read (KindPlugin *kind)
       if (G_LIKELY (rc != NULL))
         {
           /* read the settings */
-          kind->show_caps_icon = xfce_rc_read_bool_entry (rc, "show_caps_icon", TRUE);
-	  kind->show_num_icon = xfce_rc_read_bool_entry (rc, "show_num_icon", TRUE);
-	  kind->show_scroll_icon = xfce_rc_read_bool_entry (rc, "show_scroll_icon", TRUE);
+	  // TODO: is how to do this?
+          kind->config->enable_caps_icon = xfce_rc_read_bool_entry (rc, "show_caps_icon", TRUE);
+	  kind->config->enable_num_icon = xfce_rc_read_bool_entry (rc, "show_num_icon", TRUE);
+	  kind->config->enable_scroll_icon = xfce_rc_read_bool_entry (rc, "show_scroll_icon", TRUE);
 	  
           /* cleanup */
           xfce_rc_close (rc);
@@ -177,9 +179,9 @@ kind_read (KindPlugin *kind)
   /* something went wrong, apply default values */
   DBG ("Applying default settings");
 
-  kind->show_caps_icon = TRUE;
-  kind->show_num_icon = TRUE;
-  kind->show_scroll_icon = TRUE;
+  kind->config->enable_caps_icon = TRUE;
+  kind->config->enable_num_icon = TRUE;
+  kind->config->enable_scroll_icon = TRUE;
 }
 
 
@@ -268,9 +270,12 @@ kind_construct (XfcePanelPlugin *plugin)
   /* pointer to plugin */
   kind->plugin = plugin;
 
+  // initalize configuration
+  kind->config = kind_config_new(xfce_panel_plugin_get_property_base(plugin));
+
   /* read the user settings */
   kind_read (kind);
-
+  
   /* get the current orientation */
   orientation = xfce_panel_plugin_get_orientation (plugin);
 
