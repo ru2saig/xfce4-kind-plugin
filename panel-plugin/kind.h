@@ -20,6 +20,13 @@
 #ifndef __SAMPLE_H__
 #define __SAMPLE_H__
 
+
+#include <libxfce4panel/xfce-panel-plugin.h>
+#include <glib.h>
+#include <gtk/gtk.h>
+
+#include "kind-config.h"
+
 G_BEGIN_DECLS
 
 /* plugin structure */
@@ -49,8 +56,7 @@ typedef struct
   gboolean        show_num_icon;
   gboolean        show_scroll_icon;
 
-}
-  KindPlugin;
+} KindPlugin;
 
 
 

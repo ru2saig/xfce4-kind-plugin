@@ -17,7 +17,9 @@ libkind_la_SOURCES = \
 	kind.c \
 	kind.h \
 	kind-dialogs.c \
-	kind-dialogs.h
+	kind-dialogs.h \
+	kind-config.c \
+	kind-config.h
 
 libkind_la_CFLAGS = \
 	$(LIBXFCE4UTIL_CFLAGS) \

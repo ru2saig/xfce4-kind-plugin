@@ -30,6 +30,7 @@
 
 #include "kind.h"
 #include "kind-dialogs.h"
+#include "kind-config.h"
 
 
 #define UPDATE_TIMEOUT 50
