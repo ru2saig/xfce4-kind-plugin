@@ -8,11 +8,11 @@
 
 ### Homepage
 
-[Xfce4-sample-plugin repository](https://github.com/ru2saig/xfce4-kind-plugin/)
+[Xfce4-kind-plugin repository](https://github.com/ru2saig/xfce4-kind-plugin/)
 
 ### Source Code Repository
 
-[Xfce4-sample-plugin source code](https://github.com/ru2saig/xfce4-kind-plugin/)
+[Xfce4-kind-plugin source code](https://github.com/ru2saig/xfce4-kind-plugin/)
 
 ### Installation
 
