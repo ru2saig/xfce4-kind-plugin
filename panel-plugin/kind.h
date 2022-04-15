@@ -29,6 +29,7 @@
 
 G_BEGIN_DECLS
 
+
 /* plugin structure */
 typedef struct
 {

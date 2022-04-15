@@ -36,11 +36,8 @@
 #define PLUGIN_WEBSITE "https://github.com/ru2saig/xfce4-kind-plugin/" // TODO: add the link to the README here
 
 
-// is a new instance of the plgin sent? that is weird?
-// TODO: investigate what's going on, and why kind->caps_on ain't showing info
 static void
-kind_show_help(KindPlugin *kind,
-	       GtkWidget* sw)
+kind_show_help(KindPlugin *kind)
 {
   gboolean result = g_spawn_command_line_async ("exo-open --launch WebBrowser " PLUGIN_WEBSITE, NULL); 
 
@@ -50,30 +47,107 @@ kind_show_help(KindPlugin *kind,
 
 
 static void
-kind_configuration_changed(KindConfig* config)
+kind_configuration_changed(KindPlugin* kind)
 {
-  DBG("Configuaration Changed");
+  static const char *caps_icon[] = {
+    "caps_off", "caps_on",
+  };
+
+  static const char *num_icon[] = {
+    "num_off", "num_on",
+  };
+
+  static const char *scroll_icon[] = {
+    "scroll_off", "scroll_on",
+  };
+
+  
+  if(kind_config_get_enable_caps_icon(kind->config))
+    {
+      // add the caps icon in the right place
+      if(!kind->caps_icon) 
+	{
+	  kind->caps_icon = gtk_image_new();	  
+	  gtk_box_pack_start(GTK_BOX(kind->hvbox), kind->caps_icon, FALSE, FALSE, 0);
+	  // What if multiple of them are removed? What then? What about all of em?
+	  gtk_box_reorder_child(GTK_BOX(kind->hvbox), kind->caps_icon, 0);
+
+	  gtk_image_set_from_icon_name (GTK_IMAGE (kind->caps_icon), caps_icon[gdk_keymap_get_caps_lock_state(kind->kmap)], GTK_ICON_SIZE_BUTTON);
+	  gtk_image_set_pixel_size (GTK_IMAGE (kind->caps_icon), kind->icon_size);
+	  
+	  gtk_widget_show(kind->caps_icon);
+	}
+    }
+  else 
+    { // remove the icon
+      if(kind->caps_icon)
+	{
+	  gtk_widget_destroy(kind->caps_icon);
+	  kind->caps_icon = NULL;
+	}
+    }
+
+
+  if(kind_config_get_enable_num_icon(kind->config))
+    {
+      // add the num icon in the right place
+      if(!kind->num_icon) 
+	{
+	  kind->num_icon = gtk_image_new();	  
+	  gtk_box_pack_start(GTK_BOX(kind->hvbox), kind->num_icon, FALSE, FALSE, 0);
+
+	  gtk_box_reorder_child(GTK_BOX(kind->hvbox), kind->num_icon, 1);
+
+	  gtk_image_set_from_icon_name (GTK_IMAGE (kind->num_icon), num_icon[gdk_keymap_get_num_lock_state(kind->kmap)], GTK_ICON_SIZE_BUTTON);
+	  gtk_image_set_pixel_size (GTK_IMAGE (kind->num_icon), kind->icon_size);
+	  
+	  gtk_widget_show(kind->num_icon);
+	}
+    }
+  else 
+    { // remove the icon
+      if(kind->num_icon)
+	{
+	  gtk_widget_destroy(kind->num_icon);
+	  kind->num_icon = NULL;
+	}
+    }
+
+    if(kind_config_get_enable_scroll_icon(kind->config))
+      {
+	// add the scroll icon in the right place
+	if(!kind->scroll_icon) 
+	  {
+	    kind->scroll_icon = gtk_image_new();	  
+	    gtk_box_pack_start(GTK_BOX(kind->hvbox), kind->scroll_icon, FALSE, FALSE, 0);
+
+	    gtk_box_reorder_child(GTK_BOX(kind->hvbox), kind->scroll_icon, 2);
+
+	    gtk_image_set_from_icon_name (GTK_IMAGE (kind->scroll_icon), scroll_icon[gdk_keymap_get_scroll_lock_state(kind->kmap)], GTK_ICON_SIZE_BUTTON);
+	    gtk_image_set_pixel_size (GTK_IMAGE (kind->scroll_icon), kind->icon_size);
+	  
+	    gtk_widget_show(kind->scroll_icon);
+	  }
+      }
+    else 
+      { // remove the icon
+	if(kind->scroll_icon)
+	  {
+	    gtk_widget_destroy(kind->scroll_icon);
+	    kind->scroll_icon = NULL;
+	  }
+      }
 }
 
+static void
+kind_response(GtkWidget *dialog,
+	      gint response,
+	      KindPlugin *kind)
+{
 
-/* TODO: Why is this happening? How to stop it from happening?
-   In file included from /usr/include/glib-2.0/gobject/gobject.h:24,
-                 from /usr/include/glib-2.0/gobject/gbinding.h:29,
-                 from /usr/include/glib-2.0/glib-object.h:22,
-                 from /usr/include/glib-2.0/gio/gioenums.h:28,
-                 from /usr/include/glib-2.0/gio/giotypes.h:
-		 from /usr/include/glib-2.0/gio/gio.h:26,
-                 from /usr/include/gtk-3.0/gdk/gdkapplaunchcontext.h:28,
-                 from /usr/include/gtk-3.0/gdk/gdk.h:32,
-                 from /usr/include/gtk-3.0/gtk/gtk.h:30,
-                 from kind-dialogs.c:25:
-kind-dialogs.c: In function 'kind_configure':
-/usr/include/glib-2.0/gobject/gtype.h:2458:21: warning: 'dialog' may be used uninitialized in this function [-Wmaybe-uninitialized]
- 2458 |     ((ct*) (void *) g_type_check_instance_cast ((GTypeInstance*) ip, gt))
-      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~
-kind-dialogs.c:72:12: note: 'dialog' was declared here
-   72 |   GObject *dialog, *button, *gtk_switch;
- */
+  DBG("%d", response);
+  
+}
 
 void
 kind_configure (XfcePanelPlugin *plugin,
@@ -94,22 +168,28 @@ kind_configure (XfcePanelPlugin *plugin,
 
       g_return_if_fail(XFCE_IS_TITLED_DIALOG(dialog));
 
-      // TODO: call kind-save somewhere. Perhaps here
+      
       button = gtk_builder_get_object(builder, "close-button");
       g_return_if_fail(GTK_IS_BUTTON(button));
       g_signal_connect_swapped (G_OBJECT (button), "clicked",
 				G_CALLBACK (gtk_widget_destroy), dialog);
 
+      // TODO: call kind-save somewhere. Perhaps here
+      g_signal_connect (G_OBJECT (dialog), "response",
+			G_CALLBACK(kind_response), kind);
+
+
+      
       button = gtk_builder_get_object(builder, "help-button");
       g_return_if_fail(GTK_IS_BUTTON(button));
       g_signal_connect(G_OBJECT(button), "clicked",
 		       G_CALLBACK(kind_show_help), kind);
-
-
-      g_signal_connect(G_OBJECT(kind->config), "configuration-changed",
-		       G_CALLBACK(kind_configuration_changed), kind->config);
       
-      // TODO: implement a callback that checks for this property, and then loads/unloads the icon accordingly. Check NOTES for more info
+
+      g_signal_connect_swapped(G_OBJECT(kind->config), "configuration-changed",
+		       G_CALLBACK(kind_configuration_changed), kind);
+      
+
       gtk_switch = gtk_builder_get_object(builder, "caps_lock_show");
       g_return_if_fail(GTK_IS_SWITCH(gtk_switch));
       g_object_bind_property(G_OBJECT(kind->config), "enable_caps_icon",

@@ -50,6 +50,7 @@ static const char *scroll_icon[] = {
 };
 
 
+
 /* prototypes */
 static void
 kind_construct (XfcePanelPlugin *plugin);
@@ -306,6 +307,8 @@ kind_construct (XfcePanelPlugin *plugin)
   kind->num_on = -1;
   kind->scroll_on = -1;
   
+
+  // [TODO]: make these null, and use kind_configuration_changed, instead. and remove the kind_update call on 326
   kind->caps_icon = gtk_image_new();
   kind->num_icon = gtk_image_new();
   kind->scroll_icon = gtk_image_new();
@@ -322,6 +325,7 @@ kind_construct (XfcePanelPlugin *plugin)
     kind->timeout_id = g_timeout_add(UPDATE_TIMEOUT, kind_update, kind);
 
   kind_update(kind);
+
   gtk_container_add (GTK_CONTAINER (plugin), kind->ebox);
 
   
