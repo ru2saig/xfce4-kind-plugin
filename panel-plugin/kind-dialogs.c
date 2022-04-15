@@ -144,9 +144,9 @@ kind_response(GtkWidget *dialog,
 	      gint response,
 	      KindPlugin *kind)
 {
+  xfce_panel_plugin_unblock_menu(kind->plugin);
 
-  DBG("%d", response);
-  
+  kind_save(kind->plugin, kind);
 }
 
 void
@@ -162,22 +162,22 @@ kind_configure (XfcePanelPlugin *plugin,
     return;
 
   builder = gtk_builder_new ();
+  xfce_panel_plugin_block_menu (plugin);
+  
   if (gtk_builder_add_from_string (builder, kind_dialog_ui, kind_dialog_ui_length, &error))
     {
       dialog = gtk_builder_get_object (builder, "dialog");
-
+      
       g_return_if_fail(XFCE_IS_TITLED_DIALOG(dialog));
 
+
+      g_signal_connect (G_OBJECT (dialog), "response",
+			G_CALLBACK(kind_response), kind);
       
       button = gtk_builder_get_object(builder, "close-button");
       g_return_if_fail(GTK_IS_BUTTON(button));
       g_signal_connect_swapped (G_OBJECT (button), "clicked",
 				G_CALLBACK (gtk_widget_destroy), dialog);
-
-      // TODO: call kind-save somewhere. Perhaps here
-      g_signal_connect (G_OBJECT (dialog), "response",
-			G_CALLBACK(kind_response), kind);
-
 
       
       button = gtk_builder_get_object(builder, "help-button");
