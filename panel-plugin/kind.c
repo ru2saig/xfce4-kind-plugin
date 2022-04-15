@@ -67,43 +67,52 @@ kind_update(gpointer data)
   gboolean num_on = FALSE;
   gboolean scroll_on = FALSE;
 
-  // TODO: Check if the keys are enabled, to prevent uneccesarry computing
   
-  if(kind_config_get_enable_caps_icon(kind->config) && gdk_keymap_get_caps_lock_state(kind->kmap))
-      caps_on = TRUE;
-
-  if(kind_config_get_enable_num_icon(kind->config) && gdk_keymap_get_num_lock_state(kind->kmap))
-    num_on = TRUE;
-
-  if(gdk_keymap_get_scroll_lock_state(kind->kmap))
-    scroll_on = TRUE;
-
-  
-  
-  if(kind->caps_on != caps_on)
+  if(kind_config_get_enable_caps_icon(kind->config))
     {
-      gtk_image_set_from_icon_name (GTK_IMAGE (kind->caps_icon), caps_icon[caps_on], GTK_ICON_SIZE_BUTTON);
-      gtk_image_set_pixel_size (GTK_IMAGE (kind->caps_icon), kind->icon_size);
+      if(gdk_keymap_get_caps_lock_state(kind->kmap))
+        caps_on = TRUE;
 
-      kind->caps_on = caps_on;
+      if(kind->caps_on != caps_on)
+	{
+	  gtk_image_set_from_icon_name (GTK_IMAGE (kind->caps_icon), caps_icon[caps_on], GTK_ICON_SIZE_BUTTON);
+	  gtk_image_set_pixel_size (GTK_IMAGE (kind->caps_icon), kind->icon_size);
+
+	  kind->caps_on = caps_on;
+	}      
     }
 
-  if(kind->num_on != num_on)
+
+  if(kind_config_get_enable_num_icon(kind->config))
     {
-      gtk_image_set_from_icon_name (GTK_IMAGE (kind->num_icon), num_icon[num_on], GTK_ICON_SIZE_BUTTON);
-      gtk_image_set_pixel_size (GTK_IMAGE (kind->num_icon), kind->icon_size);
+      if( gdk_keymap_get_num_lock_state(kind->kmap))
+	num_on = TRUE;
+        
+      if(kind->num_on != num_on)
+	{
+	  gtk_image_set_from_icon_name (GTK_IMAGE (kind->num_icon), num_icon[num_on], GTK_ICON_SIZE_BUTTON);
+	  gtk_image_set_pixel_size (GTK_IMAGE (kind->num_icon), kind->icon_size);
 
-      kind->num_on = num_on;
+	  kind->num_on = num_on;
+	}
+
     }
+  
 
-  if(kind->scroll_on != scroll_on)
+  if(kind_config_get_enable_scroll_icon(kind->config))
     {
-      gtk_image_set_from_icon_name (GTK_IMAGE (kind->scroll_icon), scroll_icon[scroll_on], GTK_ICON_SIZE_BUTTON);
-      gtk_image_set_pixel_size (GTK_IMAGE (kind->scroll_icon), kind->icon_size);
+      if(gdk_keymap_get_scroll_lock_state(kind->kmap))
+	scroll_on = TRUE;
 
-      kind->scroll_on = scroll_on;
-    }
+      if(kind->scroll_on != scroll_on)
+	{
+	  gtk_image_set_from_icon_name (GTK_IMAGE (kind->scroll_icon), scroll_icon[scroll_on], GTK_ICON_SIZE_BUTTON);
+	  gtk_image_set_pixel_size (GTK_IMAGE (kind->scroll_icon), kind->icon_size);
 
+	  kind->scroll_on = scroll_on;
+	}
+
+    }  
 
   return TRUE;
 }
