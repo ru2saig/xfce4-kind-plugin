@@ -1,6 +1,6 @@
 /*  $Id$
  *
- *  Copyright (C) 2012 John Doo <john@foo.org>
+ *  Copyright (C) 2022 Nidhish [ru2saig] <develruusaig@disroot.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,6 +19,12 @@
 
 #ifndef __SAMPLE_DIALOGS_H__
 #define __SAMPLE_DIALOGS_H__
+
+#include <libxfce4panel/xfce-panel-plugin.h>
+#include <glib.h>
+#include <gtk/gtk.h>
+#include "kind.h"
+
 
 G_BEGIN_DECLS
 
