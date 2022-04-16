@@ -160,6 +160,7 @@ kind_read (KindPlugin *kind)
   XfceRc      *rc;
   gchar       *file;
 
+  DBG("Reading config file");
   /* get the plugin config file location */
   file = xfce_panel_plugin_save_location (kind->plugin, TRUE);
 
@@ -174,9 +175,10 @@ kind_read (KindPlugin *kind)
       if (G_LIKELY (rc != NULL))
         {
           /* read the settings */
-          kind_config_set_enable_caps_icon(kind->config, xfce_rc_read_bool_entry (rc, "show_caps_icon", TRUE));
-	  kind_config_set_enable_num_icon(kind->config, xfce_rc_read_bool_entry (rc, "show_num_icon", TRUE));
-	  kind_config_set_enable_scroll_icon(kind->config, xfce_rc_read_bool_entry (rc, "show_scroll_icon", TRUE));
+	  DBG("Setting configuration");
+          kind_config_set_enable_caps_icon(kind->config, xfce_rc_read_bool_entry (rc, "enable_caps_icon", TRUE));
+	  kind_config_set_enable_num_icon(kind->config, xfce_rc_read_bool_entry (rc, "enable_num_icon", TRUE));
+	  kind_config_set_enable_scroll_icon(kind->config, xfce_rc_read_bool_entry (rc, "enable_scroll_icon", TRUE));
 	  
           /* cleanup */
           xfce_rc_close (rc);
@@ -306,17 +308,30 @@ kind_construct (XfcePanelPlugin *plugin)
   kind->caps_on = -1;
   kind->num_on = -1;
   kind->scroll_on = -1;
-  
-  kind->caps_icon = gtk_image_new();
-  kind->num_icon = gtk_image_new();
-  kind->scroll_icon = gtk_image_new();
 
-  gtk_widget_show(kind->caps_icon);
-  gtk_box_pack_start(GTK_BOX(kind->hvbox), kind->caps_icon, FALSE, FALSE, 0);
-  gtk_widget_show(kind->num_icon);
-  gtk_box_pack_start(GTK_BOX(kind->hvbox), kind->num_icon, FALSE, FALSE, 0);
-  gtk_widget_show(kind->scroll_icon);
-  gtk_box_pack_start(GTK_BOX(kind->hvbox), kind->scroll_icon, FALSE, FALSE, 0);
+  // add only the keys that are enabled
+  if(kind_config_get_enable_caps_icon(kind->config))
+    {
+      kind->caps_icon = gtk_image_new();
+      gtk_widget_show(kind->caps_icon);
+      gtk_box_pack_start(GTK_BOX(kind->hvbox), kind->caps_icon, FALSE, FALSE, 0);
+    }
+  
+  if(kind_config_get_enable_num_icon(kind->config))
+    {
+      kind->num_icon = gtk_image_new();
+      gtk_widget_show(kind->num_icon);
+      gtk_box_pack_start(GTK_BOX(kind->hvbox), kind->num_icon, FALSE, FALSE, 0);
+
+    }
+
+  if(kind_config_get_enable_scroll_icon(kind->config))
+    {
+      kind->scroll_icon = gtk_image_new();
+      gtk_widget_show(kind->scroll_icon);
+      gtk_box_pack_start(GTK_BOX(kind->hvbox), kind->scroll_icon, FALSE, FALSE, 0);
+    }
+
 
   
   if(kind->timeout_id == 0)
