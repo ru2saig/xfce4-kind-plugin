@@ -1,0 +1,10 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+_Name=Kind Plugin
+_Comment=Keyboard indicators for xfce4 panel
+Icon=xfce4-kind-plugin
+X-XFCE-Module=kind
+X-XFCE-Internal=false
+X-XFCE-Unique=true
+X-XFCE-API=2.0
