@@ -6,13 +6,13 @@ A keyboard indicator for your xfce4-panel
 ### Screenshots
 Pretty screenshots!
 
-![All 3 Indicators](2022-04-16-183456_221x77.png)
+![All 3 Indicators](screenshots/allthree.png)
 
 
-![The Useful Indicators](2022-04-16-183431_49x23.png)
+![The Useful Indicators](screenshots/useful.png)
 
 
-![Configuration Dialog](2022-04-16-183447_385x285.png)
+![Configuration Dialog](screenshots/configdialog.png)
 
 
 
@@ -46,7 +46,8 @@ From source code repository:
     % xfce4-panel --add=kind
 
 ### Attribution
-For the icon: https://iconarchive.com/show/keyboard-keys-icons-by-chromatix.1.html
+Icons from [Qogir-icon-theme](https://github.com/vinceliuice/Qogir-icon-theme)
+Distributed under GPL-3.0.
 
 ### Reporting Bugs
 Open a new issue

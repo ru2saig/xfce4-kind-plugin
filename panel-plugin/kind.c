@@ -38,15 +38,15 @@
 
 /* icons for each key */
 static const char *caps_icon[] = {
-    "caps_off", "caps_on",
+  "caps-lock-off", "caps-lock-on",
 };
 
 static const char *num_icon[] = {
-    "num_off", "num_on",
+  "num-lock-off", "num-lock-on",
 };
 
 static const char *scroll_icon[] = {
-    "scroll_off", "scroll_on",
+  "scroll-lock-off", "scroll-lock-on",
 };
 
 
@@ -299,7 +299,7 @@ kind_construct (XfcePanelPlugin *plugin)
   kind->ebox = gtk_event_box_new ();
   gtk_widget_show (kind->ebox);
 
-  kind->hvbox = gtk_box_new(orientation, 2);
+  kind->hvbox = gtk_box_new(orientation, 0);
   gtk_widget_show(kind->hvbox);
   gtk_container_add(GTK_CONTAINER(kind->ebox), kind->hvbox);
   

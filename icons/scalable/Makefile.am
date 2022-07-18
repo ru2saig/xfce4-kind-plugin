@@ -3,12 +3,12 @@
 iconsdir = $(datadir)/icons/hicolor/scalable/apps
 icons_DATA =								\
 	xfce4-kind-plugin.svg						\
-	caps_off.svg							\
-	caps_on.svg							\
-	num_off.svg							\
-	num_on.svg							\
-	scroll_on.svg							\
-	scroll_off.svg							
+	caps-lock-off.svg							\
+	caps-lock-on.svg							\
+	num-lock-off.svg							\
+	num-lock-on.svg							\
+	scroll-lock-on.svg							\
+	scroll-lock-off.svg							
 
 EXTRA_DIST =								\
 	$(icons_DATA)

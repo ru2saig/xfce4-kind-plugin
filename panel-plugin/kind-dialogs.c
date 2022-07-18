@@ -50,15 +50,15 @@ static void
 kind_configuration_changed(KindPlugin* kind)
 {
   static const char *caps_icon[] = {
-    "caps_off", "caps_on",
+    "caps-lock-off", "caps-lock-on",
   };
 
   static const char *num_icon[] = {
-    "num_off", "num_on",
+    "num-lock-off", "num-lock-on",
   };
 
   static const char *scroll_icon[] = {
-    "scroll_off", "scroll_on",
+    "scroll-lock-off", "scroll-lock-on",
   };
 
   
