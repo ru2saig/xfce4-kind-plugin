@@ -1,3 +1,3 @@
-panel-plugin/sample.c
-panel-plugin/sample-dialogs.c
-panel-plugin/sample.desktop.in
+panel-plugin/kind.c
+panel-plugin/kind-dialogs.c
+panel-plugin/kind.desktop.in

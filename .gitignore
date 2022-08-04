@@ -31,3 +31,4 @@ stamp-*
 m4
 .cache
 compile_commands.json
+kind-dialog_ui.h

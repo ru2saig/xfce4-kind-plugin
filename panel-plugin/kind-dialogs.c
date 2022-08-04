@@ -29,7 +29,7 @@
 
 #include "kind.h"
 #include "kind-dialogs.h"
-#include "kind_dialog_ui.h"
+#include "kind-dialog_ui.h"
 #include "kind-config.h"
 
 /* the website url */
