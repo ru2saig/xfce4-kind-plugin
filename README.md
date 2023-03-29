@@ -40,10 +40,12 @@ From source code repository:
     % git clone https://github.com/ru2saig/xfce4-kind-plugin.git
     % cd xfce4-kind-plugin
     % ./autogen.sh
-    % ./configure --prefix=/usr/
+    % ./configure --prefix=/usr/ # --libdir=/usr/lib64
     % make
     % sudo make install
     % xfce4-panel --add=kind
+
+*Note:* Sometimes, /usr/lib64 is where the plugins need to be installed. In that case, uncomment the libdir option in the configure line.
 
 ### Attribution
 Icons from [Qogir-icon-theme](https://github.com/vinceliuice/Qogir-icon-theme)
