@@ -45,7 +45,7 @@ From source code repository:
     % sudo make install
     % xfce4-panel --add=kind
 
-*Note:* Sometimes, /usr/lib64 is where the plugins need to be installed. In that case, uncomment the libdir option in the configure line.
+*Note:* For multilib systems, usse /usr/lib64 as the plugin installation directory. In that case, uncomment the libdir option in the configure line.
 
 ### Attribution
 Icons from [Qogir-icon-theme](https://github.com/vinceliuice/Qogir-icon-theme)
